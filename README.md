@@ -10,13 +10,15 @@ A customizable, ready to go, docker compose file featuring
 Just rename `.env.sample` to `.env` and set the environment values to suite your needs.
 
 ## PREREQUISITES:
-- Any host runnign Docker[^1]
-[^1]:You will be able to reach your Treeql instance via `http(s)://<your_docker_host_ip>:8080/`
+- Any host runnign Docker[^1].
+- In Docker, create a network as follows: `docker network create php-api-network`.
+[^1]:You will be able to reach your Treeql instance via `http(s)://<your_docker_host_ip>:8080/`.
   
   
 ## PREREQUISITES FOR THE INSTANCE TO BE REACHED ON THE WEB
-- Any host running Docker
-- A reverse proxy with public IP redirecting **YOUR A RECORD** (e.g. api.exemple.com) towards your docker host[^2]
+- Any host running Docker.
+- In Docker, create a network as follows: `docker network create php-api-network`.
+- A reverse proxy with public IP redirecting **YOUR A RECORD** (e.g. api.exemple.com) towards your docker host[^2].
 [^2]:Needs a minimal network knowledge.
 
 ## USAGE:
