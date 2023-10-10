@@ -14,7 +14,8 @@ services:
       - ./mysql:/var/lib/mysql
     #ports:
     #  - "3306:3306"
-    network_mode: "php-api-network"
+    networks: 
+      - php-api-network
 
   php:      
     build:
@@ -24,7 +25,8 @@ services:
       - ./php:/var/www/html
     depends_on:
       - mysql
-    network_mode: "php-api-network"
+    networks: 
+      - php-api-network
 
   web:
     image: nginx:latest
@@ -45,7 +47,8 @@ services:
     command: /bin/bash -c "envsubst '$$PHP_CRUD_API_DEBUG, $$MYSQL_DATABASE, $$MYSQL_USER, $$MYSQL_PASSWORD' < /var/www/html/api.php.template > /var/www/html/api.php && envsubst '$$SERVER_NAME' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     depends_on:
       - php
-    network_mode: "php-api-network"
+    networks: 
+      - php-api-network
 
   phpmyadmin:
     container_name: phpmyadmin_treeqlqs
@@ -54,7 +57,8 @@ services:
     environment:
       PMA_HOST: mysql_treeqlqs
       PMA_ABSOLUTE_URI: ${SERVER_NAME}phpmyadmin/
-    network_mode: "php-api-network"
+    networks: 
+      - php-api-network
     depends_on:
       - web
 
@@ -65,7 +69,8 @@ services:
     environment:
       SWAGGER_JSON_URL: ${SERVER_NAME}openapi
       DOC_EXPANSION: none # optionally set to list, or full
-    network_mode: "php-api-network"
+    networks: 
+      - php-api-network
     depends_on:
       - web
 
