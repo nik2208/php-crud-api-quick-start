@@ -11,7 +11,6 @@ Just rename `.env.sample` to `.env` and set the environment values to suite your
 
 ## PREREQUISITES:
 - Any host runnign Docker[^1].
-- In Docker, create a network as follows: `docker network create php-api-network`.
 [^1]:You will be able to reach your Treeql instance via `http(s)://<your_docker_host_ip>:8080/`.
   
   
