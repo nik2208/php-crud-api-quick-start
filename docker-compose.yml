@@ -52,7 +52,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: mysql_treeqlqs
       PMA_ABSOLUTE_URI: ${SERVER_NAME}phpmyadmin/
     network_mode: "php-api-network"
     depends_on:
