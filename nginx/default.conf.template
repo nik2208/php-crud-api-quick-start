@@ -17,8 +17,8 @@ server {
         include fastcgi_params;
     }
 
-    location /openapi {
-        rewrite ^/openapi$ /openapi/ permanent;
+    location /swagger {
+        rewrite ^/swagger$ /swagger/ permanent;
         proxy_pass http://swagger_treeqlqs.php-api-network:8080/;
     }
 

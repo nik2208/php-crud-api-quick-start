@@ -28,7 +28,7 @@ https://api.example.com/records/tests (no need of explicit api.php)[^3]
 ### Your PHPMYADMIN instance will be available at
 https://api.example.com/phpmyadmin/
 ### Your SWAGGER instance will be available at
-https://api.example.com/openapi/
+https://api.example.com/swagger/
 
 ## GITLAB CD/CI
 A `.gitlab-ci.yml` file is provided.[^4]
