@@ -53,6 +53,7 @@ services:
     restart: always
     environment:
       PMA_HOST: mysql.php-api-network
+      PMA_ABSOLUTE_URI: ${SERVER_NAME}phpmyadmin/
     network_mode: "php-api-network"
     depends_on:
       - web
