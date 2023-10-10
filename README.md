@@ -9,6 +9,26 @@ A customizable, ready to go, docker compose file featuring
 
 Just rename `.env.sample` to `.env` and set the environment values to suite your needs.
 
+```.env.sample
+#rename to .env
+#NGINX EXPOSED PORT
+PORT=8080
+
+#API SUBDOMAIN (DNS RECORD A) OR HTTP(S)://IP_ADDRESS:PORT/ IF LOCALLY DEPLOYED
+SERVER_NAME=https://api.example.com/
+
+###########################################
+#DATABASE PARAMETERS
+MYSQL_ROOT_PASSWORD=samplepassword
+MYSQL_DATABASE=sampledb
+MYSQL_USER=sampleuser
+MYSQL_PASSWORD=samplepassword
+
+###########################################
+#API.PHP PARAMETERS
+#DEBUG MODE
+PHP_CRUD_API_DEBUG=true
+```
 ## PREREQUISITES:
 - Any host runnign Docker[^1].
 [^1]:You will be able to reach your Treeql instance via `http(s)://<your_docker_host_ip>:8080/`.
