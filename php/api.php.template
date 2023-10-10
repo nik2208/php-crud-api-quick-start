@@ -12740,7 +12740,7 @@ namespace Tqdev\PhpCrudApi {
 
     $config = new Config([
         'driver' => 'mysql',
-        'address' => 'mysql.php-api-network',
+        'address' => 'mysql_treeqlqs.php-api-network',
         'port' => '3306',
         'username' => '$MYSQL_USER',
         'password' => '$MYSQL_PASSWORD',

@@ -3,7 +3,7 @@ version: "3.9"
 services:
   mysql:
     image: mysql:latest
-    container_name: mysql
+    container_name: mysql_treeqlqs
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -19,7 +19,7 @@ services:
   php:      
     build:
       context: .
-    container_name: php-fpm
+    container_name: php-fpm_treeqlqs
     volumes:
       - ./php:/var/www/html
     depends_on:
@@ -28,7 +28,7 @@ services:
 
   web:
     image: nginx:latest
-    container_name: nginx
+    container_name: nginx_treeqlqs
     restart: always
     environment:
       SERVER_NAME: ${SERVER_NAME}
@@ -47,7 +47,7 @@ services:
     network_mode: "php-api-network"
 
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: phpmyadmin_treeqlqs
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:
@@ -57,7 +57,7 @@ services:
       - web
 
   swagger:
-    container_name: swagger
+    container_name: swagger_treeqlqs
     image: swaggerapi/swagger-ui
     restart: always
     environment:

@@ -11,7 +11,7 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass php-fpm.php-api-network:9000;
+        fastcgi_pass php-fpm_treeqlqs.php-api-network:9000;
         fastcgi_param SCRIPT_FILENAME $document_root/api.php;
         fastcgi_param PHP_VALUE "root=/var/www/html;";
         include fastcgi_params;
@@ -19,12 +19,12 @@ server {
 
     location /openapi {
         rewrite ^/openapi$ /openapi/ permanent;
-        proxy_pass http://swagger.php-api-network:8080/;
+        proxy_pass http://swagger_treeqlqs.php-api-network:8080/;
     }
 
     location /phpmyadmin {
         rewrite ^/phpmyadmin$ /phpmyadmin/ permanent;
-        proxy_pass http://phpmyadmin.php-api-network/;
+        proxy_pass http://phpmyadmin_treeqlqs.php-api-network/;
     }
 }
 
