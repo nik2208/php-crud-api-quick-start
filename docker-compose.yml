@@ -12,8 +12,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./mysql:/var/lib/mysql
-    ports:
-      - "3306:3306"
+    #ports:
+    #  - "3306:3306"
     network_mode: "php-api-network"
 
   php:      
