@@ -68,3 +68,7 @@ services:
     network_mode: "php-api-network"
     depends_on:
       - web
+
+networks:
+  php-api-network:
+    driver: bridge
