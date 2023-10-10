@@ -29,6 +29,9 @@ MYSQL_PASSWORD=samplepassword
 #DEBUG MODE
 PHP_CRUD_API_DEBUG=true
 ```
+
+then run `docker compose up -d`. Enjoy!🎉🚀
+
 ## PREREQUISITES:
 - Any host runnign Docker[^1].
 [^1]:You will be able to reach your Treeql instance via `http(s)://<your_docker_host_ip>:8080/`.
