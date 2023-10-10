@@ -31,6 +31,7 @@ https://api.example.com/openapi/
 ## GITLAB CD/CI
 A `.gitlab-ci.yml` file is provided.[^4]
 [^4]:Needs Gitlab variables properly set.
+
 The CD/CI flow expects to find a cloned repository on the deploying host, and the `.env` file properly set for that specific host/environment.
 The provided Gitlab pipeline encompasses three branches, related to three hosts/environments:
 - develop
