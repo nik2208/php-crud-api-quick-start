@@ -31,6 +31,7 @@ services:
     container_name: nginx_treeqlqs
     restart: always
     environment:
+      PORT: ${PORT}
       SERVER_NAME: ${SERVER_NAME}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -40,7 +41,7 @@ services:
       - ./nginx/default.conf.template:/etc/nginx/conf.d/default.conf.template
       - ./php:/var/www/html
     ports:
-      - "8080:80"
+      - "${PORT}:80"
     command: /bin/bash -c "envsubst '$$PHP_CRUD_API_DEBUG, $$MYSQL_DATABASE, $$MYSQL_USER, $$MYSQL_PASSWORD' < /var/www/html/api.php.template > /var/www/html/api.php && envsubst '$$SERVER_NAME' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     depends_on:
       - php
