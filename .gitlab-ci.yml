@@ -1,0 +1,42 @@
+stages:
+  - deploy
+
+deploy_devel:
+  stage: deploy
+  environment:
+    name: devel
+  before_script:
+    - chmod 400 $SSH_KEY_DEVEL
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY_DEVEL $SSH_USER_DEVEL@$SSH_HOST_DEVEL "
+      cd dockerCompose/$PROJECT && git fetch && git pull origin develop &&
+      docker compose down && docker compose up -d --build"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "develop"'
+
+deploy_staging:
+  stage: deploy
+  environment:
+    name: staging
+  before_script:
+    - chmod 400 $SSH_KEY_STAGING
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY_STAGING $SSH_USER_STAGING@$SSH_HOST_STAGING "
+      cd dockerCompose/$PROJECT && git fetch && git pull origin staging &&
+      docker compose down && docker compose up -d --build"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "staging"'
+
+deploy_production:
+  stage: deploy
+  environment:
+    name: production
+  before_script:
+    - chmod 400 $SSH_KEY_PRODUCTION
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY_PRODUCTION $SSH_USER_PRODUCTION@$SSH_HOST_PRODUCTION "
+      cd dockerCompose/$PROJECT && git pull origin master &&
+      docker compose down && docker compose up -d --build"
+  rules:
+    - if: $CI_COMMIT_TAG
+

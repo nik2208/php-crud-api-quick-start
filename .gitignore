@@ -1,0 +1,6 @@
+mysql
+.env
+.vscode
+.DS_Store
+php/.DS_Store
+swagger.json
