@@ -16,7 +16,6 @@ Just rename `.env.sample` to `.env` and set the environment values to suite your
   
 ## PREREQUISITES FOR THE INSTANCE TO BE REACHED ON THE WEB
 - Any host running Docker.
-- In Docker, create a network as follows: `docker network create php-api-network`.
 - A reverse proxy with public IP redirecting **YOUR A RECORD** (e.g. api.exemple.com) towards your docker host[^2].
 [^2]:Needs a minimal network knowledge.
 
