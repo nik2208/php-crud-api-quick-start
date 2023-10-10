@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name https://${SERVER_NAME}/;
+    server_name ${SERVER_NAME};
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
     root /var/www/html;
@@ -11,7 +11,7 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass php-fpm_treeqlqs.php-api-network:9000;
+        fastcgi_pass php-fpm_treeqlqs:9000;
         fastcgi_param SCRIPT_FILENAME $document_root/api.php;
         fastcgi_param PHP_VALUE "root=/var/www/html;";
         include fastcgi_params;
@@ -19,12 +19,14 @@ server {
 
     location /swagger {
         rewrite ^/swagger$ /swagger/ permanent;
-        proxy_pass http://swagger_treeqlqs.php-api-network:8080/;
+        proxy_pass http://swagger_treeqlqs:8080/;
     }
 
-    location /phpmyadmin {
-        rewrite ^/phpmyadmin$ /phpmyadmin/ permanent;
-        proxy_pass http://phpmyadmin_treeqlqs.php-api-network/;
+   location ^~ /phpmyadmin/ {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://phpmyadmin_treeqlqs/;
     }
 }
 
