@@ -69,6 +69,10 @@ services:
     restart: always
     environment:
       ADMINER_DEFAULT_SERVER: mysql_treeqlqs
+    networks: 
+      - php-api-network
+    depends_on:
+      - web
 
   swagger:
     container_name: swagger_treeqlqs
