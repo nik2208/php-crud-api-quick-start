@@ -45,9 +45,9 @@ In case your running your instance on localhost and your selected port is 8080
 **Your `tests` table will be available at**
 http://127.0.0.1:8080/records/tests (no need of explicit api.php)[^1]
 **Your MYSQL ADMIN instance will be available at**
-https://127.0.0.1:8080/dbadmin/
+http://127.0.0.1:8080/dbadmin/
 **Your SWAGGER instance will be available at**
-https://127.0.0.1:8080/swagger/
+http://127.0.0.1:8080/swagger/
 
 Change ip and port accordingly if host and port differ.
 
