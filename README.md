@@ -4,7 +4,7 @@ A customizable, ready-to-go, Docker Compose file featuring
 - MySQL
 - PHP-FPM
 - NGINX
-- PHPMYADMIN
+- ADMINER
 - SWAGGER (OPENAPI)
 
 ## INSTALLATION:
@@ -36,6 +36,7 @@ PHP_CRUD_API_DEBUG=true
 ```
 
 Then run `docker compose up -d`. Enjoy!🎉🚀
+Refer to [PHP-CRUD-API](https://github.com/mevdschee/php-crud-api) for further customizations.
 
 ## REQUIREMENTS:
 - Any host runnign [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
@@ -43,8 +44,8 @@ Then run `docker compose up -d`. Enjoy!🎉🚀
 In case your running your instance on localhost and your selected port is 8080
 **Your `tests` table will be available at**
 http://127.0.0.1:8080/records/tests (no need of explicit api.php)[^1]
-**Your PHPMYADMIN instance will be available at**
-https://127.0.0.1:8080/phpmyadmin/
+**Your MYSQL ADMIN instance will be available at**
+https://127.0.0.1:8080/dbadmin/
 **Your SWAGGER instance will be available at**
 https://127.0.0.1:8080/swagger/
 
@@ -60,8 +61,8 @@ Change ip and port accordingly if host and port differ.
 
 **Your `tests` table will be available at**
 https://api.example.com/records/tests (no need of explicit api.php)[^1]
-**Your PHPMYADMIN instance will be available at**
-https://api.example.com/phpmyadmin/
+**Your MYSQL ADMIN instance will be available at**
+https://api.example.com/dbadmin/
 **Your SWAGGER instance will be available at**
 https://api.example.com/swagger/
 
