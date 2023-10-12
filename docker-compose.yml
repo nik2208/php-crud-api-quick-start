@@ -52,16 +52,27 @@ services:
       - php-api-network
 
   phpmyadmin:
-    container_name: phpmyadmin_treeqlqs
+    container_name: dbadmin_treeqlqs
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:
       PMA_HOST: mysql_treeqlqs
-      PMA_ABSOLUTE_URI: ${SERVER_NAME}phpmyadmin/
+      PMA_ABSOLUTE_URI: ${SERVER_NAME}dbadmin/
     networks: 
       - php-api-network
     depends_on:
       - web
+
+  #adminer:
+  #  container_name: dbadmin_treeqlqs
+  #  image: adminer
+  #  restart: always
+  #  environment:
+  #    ADMINER_DEFAULT_SERVER: mysql_treeqlqs
+  #  networks: 
+  #    - php-api-network
+  #  depends_on:
+  #    - web
 
   swagger:
     container_name: swagger_treeqlqs
