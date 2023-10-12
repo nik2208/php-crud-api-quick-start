@@ -40,7 +40,7 @@ Then run `docker compose up -d`. Enjoy!🎉🚀
 ## REQUIREMENTS:
 - Any host runnign [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
-In case your running your instance on localhost and yout selected port is 8080
+In case your running your instance on localhost and your selected port is 8080
 **Your `tests` table will be available at**
 http://127.0.0.1:8080/records/tests (no need of explicit api.php)[^1]
 **Your PHPMYADMIN instance will be available at**
@@ -56,7 +56,7 @@ Change ip and port accordingly if host and port differ.
 
 ## REQUIREMENTS FOR THE INSTANCE TO BE REACHED OVER THE WEB
 - Any host running [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
-- A FQDN (Fully Qualified Domain Name), a public IP, and a [reverse proxy](https://nginxproxymanager.com/) to forward **YOUR A RECORD** requests (e.g. api.exemple.com) to your Docker host[^2].
+- A FQDN (Fully Qualified Domain Name), a public IP, a [reverse proxy](https://nginxproxymanager.com/) to forward **YOUR A RECORD** requests (e.g. api.exemple.com) to your Docker host[^2].
 
 **Your `tests` table will be available at**
 https://api.example.com/records/tests (no need of explicit api.php)[^1]
