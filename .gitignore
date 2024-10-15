@@ -3,4 +3,5 @@ mysql
 .vscode
 .DS_Store
 php/.DS_Store
+php/api.php
 swagger.json

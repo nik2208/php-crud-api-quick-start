@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mysql:
     image: mysql:latest
@@ -14,18 +12,26 @@ services:
       - ./mysql:/var/lib/mysql
     #ports:
     #  - "3306:3306"
-    networks: 
+    networks:
       - php-api-network
 
-  php:      
+  php:
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: php-fpm_treeqlqs
     volumes:
       - ./php:/var/www/html
+    environment:
+      PHP_CRUD_API_PORT: 3306  #${PORT}
+      PHP_CRUD_API_ADDRESS: mysql_treeqlqs  #${SERVER_NAME}
+      PHP_CRUD_API_DATABASE: ${MYSQL_DATABASE}
+      PHP_CRUD_API_USERNAME: ${MYSQL_USER}
+      PHP_CRUD_API_PASSWORD: ${MYSQL_PASSWORD}
+      PHP_CRUD_API_DEBUG: ${PHP_CRUD_API_DEBUG}
     depends_on:
       - mysql
-    networks: 
+    networks:
       - php-api-network
 
   web:
@@ -34,42 +40,36 @@ services:
     restart: always
     environment:
       SERVER_NAME: ${SERVER_NAME}
-      PHP_CRUD_API_PORT: ${PORT}
-      PHP_CRUD_API_ADDRESS: ${SERVER_NAME}
-      PHP_CRUD_API_DATABASE: ${MYSQL_DATABASE}
-      PHP_CRUD_API_USERNAME: ${MYSQL_USER}
-      PHP_CRUD_API_PASSWORD: ${MYSQL_PASSWORD}
-      PHP_CRUD_API_DEBUG: ${PHP_CRUD_API_DEBUG}
     volumes:
       - ./nginx/default.conf.template:/etc/nginx/conf.d/default.conf.template
       - ./php:/var/www/html
     ports:
       - "${PORT}:80"
-    command: /bin/bash -c "curl -o /var/www/html/api.php https://raw.githubusercontent.com/mevdschee/php-crud-api/main/api.php && envsubst '$$SERVER_NAME' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    command: /bin/bash -c "envsubst '$$SERVER_NAME' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     depends_on:
       - php
-    networks: 
+    networks:
       - php-api-network
 
-  #phpmyadmin:
+  #adminer:
   #  container_name: dbadmin_treeqlqs
-  #  image: phpmyadmin/phpmyadmin
+  #  image: adminer
   #  restart: always
   #  environment:
-  #    PMA_HOST: mysql_treeqlqs
-  #    PMA_ABSOLUTE_URI: ${SERVER_NAME}dbadmin/
-  #  networks: 
+  #    ADMINER_DEFAULT_SERVER: mysql_treeqlqs
+  #  networks:
   #    - php-api-network
   #  depends_on:
   #    - web
 
-  adminer:
+  phpmyadmin:
     container_name: dbadmin_treeqlqs
-    image: adminer
+    image: phpmyadmin/phpmyadmin
     restart: always
     environment:
-      ADMINER_DEFAULT_SERVER: mysql_treeqlqs
-    networks: 
+      PMA_HOST: mysql_treeqlqs
+      PMA_ABSOLUTE_URI: ${SERVER_NAME}dbadmin/
+    networks:
       - php-api-network
     depends_on:
       - web
@@ -80,8 +80,8 @@ services:
     restart: always
     environment:
       SWAGGER_JSON_URL: ${SERVER_NAME}openapi
-      DOC_EXPANSION: none # optionally set to list, or full
-    networks: 
+      DOC_EXPANSION: none
+    networks:
       - php-api-network
     depends_on:
       - web
