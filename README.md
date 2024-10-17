@@ -40,7 +40,9 @@ DB_ADMIN_TOOL=phpmyadmin
 ```
 
 Then run `start.sh`. Enjoy!🎉🚀
+
 To stop the stack run `stop.sh`.
+
 Refer to [PHP-CRUD-API](https://github.com/mevdschee/php-crud-api) for further customizations.
 
 ## REQUIREMENTS:
@@ -50,8 +52,10 @@ In case your running your instance on localhost and your selected port is 8080.
 
 **Your `tests` table will be available at**
 http://127.0.0.1:8080/records/tests (no need of explicit api.php)[^1]
+
 **Your MYSQL ADMIN instance will be available at**
 http://127.0.0.1:8080/dbadmin/
+
 **Your SWAGGER instance will be available at**
 http://127.0.0.1:8080/swagger/
 
@@ -59,19 +63,18 @@ Change ip and port accordingly if host and port differ.
 
 [^1]:After your first deployment the database will be empty.
 
-
-
 ## REQUIREMENTS FOR THE INSTANCE TO BE REACHED OVER THE WEB
 - Any host running [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 - A FQDN (Fully Qualified Domain Name), a public IP, a [reverse proxy](https://nginxproxymanager.com/) to forward **YOUR A RECORD** requests (e.g. api.exemple.com) to your Docker host[^2].
 
 **Your `tests` table will be available at**
 https://api.example.com/records/tests (no need of explicit api.php)[^1]
+
 **Your MYSQL ADMIN instance will be available at**
 https://api.example.com/dbadmin/
+
 **Your SWAGGER instance will be available at**
 https://api.example.com/swagger/
-
 
 [^2]:Minimal networking knowledge is required.
 
