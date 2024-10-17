@@ -20,12 +20,15 @@ server {
     location /swagger {
         rewrite ^/swagger$ /swagger/ permanent;
         proxy_pass http://swagger_treeqlqs:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 
     location ^~ /dbadmin/ {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
-        proxy_pass http://dbadmin_treeqlqs:80/;
+        proxy_pass http://dbadmin_treeqlqs:${DB_ADMIN_PORT}/;
     }
 }

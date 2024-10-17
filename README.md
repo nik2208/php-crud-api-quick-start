@@ -4,7 +4,7 @@ A customizable, ready-to-go, Docker Compose file featuring
 - MySQL
 - PHP-FPM
 - NGINX
-- ADMINER
+- ADMINER/PHPMYADMIN
 - SWAGGER (OPENAPI)
 
 ## INSTALLATION:
@@ -32,10 +32,14 @@ MYSQL_PASSWORD=samplepassword
 ###########################################
 #API.PHP PARAMETERS
 #DEBUG MODE
-PHP_CRUD_API_DEBUG=true
+PHP_CRUD_API_DEBUG=1
+
+###########################################
+#DB ADMIN TOOL ("adminer" OR "phpmyadmin")
+DB_ADMIN_TOOL=phpmyadmin
 ```
 
-Then run `docker compose up -d`. Enjoy!🎉🚀
+Then run `start.sh`. Enjoy!🎉🚀
 Refer to [PHP-CRUD-API](https://github.com/mevdschee/php-crud-api) for further customizations.
 
 ## REQUIREMENTS:
