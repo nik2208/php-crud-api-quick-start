@@ -13,7 +13,7 @@ Just pull the repo `git clone https://github.com/nik2208/php-crud-api-quick-star
 
 ```ini
 #rename to .env
-# NGINX EXPOSED PORT: THE PORT WHERE YOU WANT YOUR DOCKER STACK TO LISTEN.
+# DOCKER STACK EXPOSED PORT.
 PORT=8080
 
 # API SUBDOMAIN (DNS RECORD A) OR HTTP(S)://IP_ADDRESS:PORT/ IF LOCALLY DEPLOYED
