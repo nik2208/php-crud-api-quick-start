@@ -30,4 +30,4 @@ else
     exit 1
 fi
 
-echo "Servizi avviati con successo!"
+echo "Servizi arrestati con successo."
