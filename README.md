@@ -40,12 +40,14 @@ DB_ADMIN_TOOL=phpmyadmin
 ```
 
 Then run `start.sh`. Enjoy!🎉🚀
+To stop the stack run `stop.sh`.
 Refer to [PHP-CRUD-API](https://github.com/mevdschee/php-crud-api) for further customizations.
 
 ## REQUIREMENTS:
 - Any host runnign [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
-In case your running your instance on localhost and your selected port is 8080
+In case your running your instance on localhost and your selected port is 8080.
+
 **Your `tests` table will be available at**
 http://127.0.0.1:8080/records/tests (no need of explicit api.php)[^1]
 **Your MYSQL ADMIN instance will be available at**
