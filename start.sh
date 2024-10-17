@@ -21,10 +21,10 @@ export DB_ADMIN_PORT
 # Verifica quale tool di amministrazione del database è stato selezionato
 if [ "$DB_ADMIN_TOOL" = "adminer" ]; then
     echo "Avvio dei servizi con Adminer..."
-    docker-compose --profile adminer up -d --build
+    docker compose --profile adminer up -d --build
 elif [ "$DB_ADMIN_TOOL" = "phpmyadmin" ]; then
     echo "Avvio dei servizi con PhpMyAdmin..."
-    docker-compose --profile phpmyadmin up -d --build
+    docker compose --profile phpmyadmin up -d --build
 else
     echo "Errore: DB_ADMIN_TOOL non valido. Usa 'adminer' o 'phpmyadmin'."
     exit 1
