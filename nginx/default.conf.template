@@ -10,7 +10,7 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass php-fpm_treeqlqs:9000;
+        fastcgi_pass php-fpm_treeqlqs-${CONTAINERS_NAME_SUFFIX}:9000;
         fastcgi_index api.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -19,7 +19,7 @@ server {
 
     location /swagger {
         rewrite ^/swagger$ /swagger/ permanent;
-        proxy_pass http://swagger_treeqlqs:8080/;
+        proxy_pass http://swagger_treeqlqs-${CONTAINERS_NAME_SUFFIX}:8080/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -29,6 +29,6 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
-        proxy_pass http://dbadmin_treeqlqs:${DB_ADMIN_PORT}/;
+        proxy_pass http://dbadmin_treeqlqs-${CONTAINERS_NAME_SUFFIX}:${DB_ADMIN_PORT}/;
     }
 }

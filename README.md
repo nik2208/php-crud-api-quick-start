@@ -37,6 +37,10 @@ PHP_CRUD_API_DEBUG=1
 ###########################################
 #DB ADMIN TOOL ("adminer" OR "phpmyadmin")
 DB_ADMIN_TOOL=phpmyadmin
+
+###########################################
+#CONTAINERS' NAME SUFFIX
+CONTAINERS_NAME_SUFFIX=php-quick-start
 ```
 
 Then run `start.sh`. Enjoy!🎉🚀
