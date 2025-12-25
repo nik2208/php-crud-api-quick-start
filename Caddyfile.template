@@ -1,0 +1,19 @@
+:80 {
+	encode zstd br gzip
+	
+	# Reverse proxy to Swagger UI
+	handle /swagger* {
+		uri strip_prefix /swagger
+		reverse_proxy swagger_treeqlqs-${CONTAINERS_NAME_SUFFIX}:8080
+	}
+	
+	# Reverse proxy to DB Admin Tool (Adminer or PhpMyAdmin)
+	handle /dbadmin* {
+		reverse_proxy dbadmin_treeqlqs-${CONTAINERS_NAME_SUFFIX}:8080
+	}
+	
+	# API endpoints (catch-all after other routes)
+	php_server {
+		root /app
+	}
+}

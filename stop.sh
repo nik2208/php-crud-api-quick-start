@@ -3,31 +3,48 @@
 # Carica le variabili d'ambiente dal file .env
 export $(grep -v '^#' .env | xargs)
 
-# Funzione per calcolare la porta del DB admin tool
-calculate_db_admin_port() {
-    if [ "$DB_ADMIN_TOOL" = "adminer" ]; then
-        echo "8080"
-    elif [ "$DB_ADMIN_TOOL" = "phpmyadmin" ]; then
-        echo "80"
+# Funzione per calcolare il profilo Docker Compose in base al driver
+calculate_db_profile() {
+    if [ "$PHP_CRUD_API_DRIVER" = "mysql" ]; then
+        echo "mysql"
+    elif [ "$PHP_CRUD_API_DRIVER" = "pgsql" ]; then
+        echo "postgres"
     else
-        echo "80"  # Valore di default
+        echo "mysql"  # Default
     fi
 }
 
-# Calcola la porta del DB admin tool
-DB_ADMIN_PORT=$(calculate_db_admin_port)
-export DB_ADMIN_PORT
+# Valida il driver del database
+if [ "$PHP_CRUD_API_DRIVER" != "mysql" ] && [ "$PHP_CRUD_API_DRIVER" != "pgsql" ]; then
+    echo "Errore: PHP_CRUD_API_DRIVER deve essere 'mysql' o 'pgsql'."
+    exit 1
+fi
 
-# Verifica quale tool di amministrazione del database è stato selezionato
-if [ "$DB_ADMIN_TOOL" = "adminer" ]; then
-    echo "Arresto dei servizi con Adminer..."
-    docker compose --profile adminer down
-elif [ "$DB_ADMIN_TOOL" = "phpmyadmin" ]; then
-    echo "Arresto dei servizi con PhpMyAdmin..."
-    docker compose --profile phpmyadmin down
-else
+# Valida il tool di amministrazione del database
+if [ "$DB_ADMIN_TOOL" != "adminer" ] && [ "$DB_ADMIN_TOOL" != "phpmyadmin" ]; then
     echo "Errore: DB_ADMIN_TOOL non valido. Usa 'adminer' o 'phpmyadmin'."
     exit 1
 fi
 
-echo "Servizi arrestati con successo."
+# Verifica che phpmyadmin sia usato solo con MySQL
+if [ "$DB_ADMIN_TOOL" = "phpmyadmin" ] && [ "$PHP_CRUD_API_DRIVER" = "pgsql" ]; then
+    export DB_ADMIN_TOOL="adminer"
+fi
+
+# Calcola il profilo Docker Compose
+DB_PROFILE=$(calculate_db_profile)
+
+echo "Arresto dei servizi..."
+echo "Database Driver: $PHP_CRUD_API_DRIVER"
+echo "Database Profile: $DB_PROFILE"
+echo "Admin Tool: $DB_ADMIN_TOOL"
+echo ""
+
+docker compose --profile "$DB_PROFILE" --profile "$DB_ADMIN_TOOL" down
+
+if [ $? -eq 0 ]; then
+    echo "✅ Servizi arrestati con successo!"
+else
+    echo "❌ Errore nell'arresto dei servizi."
+    exit 1
+fi
