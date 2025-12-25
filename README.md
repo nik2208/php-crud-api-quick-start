@@ -2,8 +2,8 @@
 A customizable, ready-to-go, Docker Compose file featuring
 - [PHP-CRUD-API](https://github.com/mevdschee/php-crud-api)
 - MySQL / PostgreSQL (optional)
-- PHP-FPM
-- NGINX
+- FRANKEN PHP
+- CADDY
 - ADMINER/PHPMYADMIN
 - SWAGGER (OPENAPI)
 
